@@ -21,30 +21,31 @@
  */
 #pragma once
 
+#include "pins_BTT_SKR_MINI_E3.h"
+
+#define BOARD_INFO_NAME "BIGTREE SKR Mini E3 V1.2"
+
+#define NEOPIXEL_PIN       PC7  // LED driving pin
+
 /**
- * Azteeg X5 MINI pin assignments
+ * TMC2208/TMC2209 stepper drivers
  */
+#if HAS_TMC_UART
+  //
+  // Software serial
+  //
+  #define X_SERIAL_TX_PIN  PB15
+  #define X_SERIAL_RX_PIN  PB15
 
-#ifndef MCU_LPC1769
-  #error "Oops! Make sure you have the LPC1769 environment selected in your IDE."
+  #define Y_SERIAL_TX_PIN  PC6
+  #define Y_SERIAL_RX_PIN  PC6
+
+  #define Z_SERIAL_TX_PIN  PC10
+  #define Z_SERIAL_RX_PIN  PC10
+
+  #define E0_SERIAL_TX_PIN PC11
+  #define E0_SERIAL_RX_PIN PC11
+
+  // Reduce baud rate to improve software serial reliability
+  #define TMC_BAUD_RATE 19200
 #endif
-
-#define BOARD_INFO_NAME "Azteeg X5 MINI WIFI"
-
-//
-// EEPROM
-//
-#define FLASH_EEPROM_EMULATION
-//#define SDCARD_EEPROM_EMULATION
-
-//
-// DIGIPOT slave addresses
-//
-#ifndef DIGIPOT_I2C_ADDRESS_A
-  #define DIGIPOT_I2C_ADDRESS_A 0x58   // shifted slave address for first DIGIPOT (0x58 <- 0x2C << 1)
-#endif
-#ifndef DIGIPOT_I2C_ADDRESS_B
-  #define DIGIPOT_I2C_ADDRESS_B 0x5C   // shifted slave address for second DIGIPOT (0x5C <- 0x2E << 1)
-#endif
-
-#include "pins_AZTEEG_X5_MINI.h"
