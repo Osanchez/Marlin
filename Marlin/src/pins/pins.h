@@ -936,7 +936,7 @@
 #endif
 
 #ifndef FAN_PIN
-  #define FAN_PIN -1
+  #define FAN_PIN P2_03
 #endif
 #define FAN0_PIN FAN_PIN
 #ifndef FAN1_PIN
